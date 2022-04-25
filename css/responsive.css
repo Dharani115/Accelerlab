@@ -1,0 +1,79 @@
+@media (min-width: 450px) and (max-width: 770px){
+.login-page {
+    margin: 0px;
+    width: 100%;
+	height:450px;
+}
+.form-group{
+    margin-left:0px;
+}
+.form-group input{
+    margin-left:25px;
+}
+.login-page .home{
+	padding-right:10px;
+}
+.login-page .registeer{
+	margin-left:15px;
+}
+
+.register-cont .register p{
+	Margin-left:-15%;
+	font-size:15px;
+}
+.login-path a{
+	font-size:15px;
+}
+.btn-warning{
+	padding:10px 100px;
+	background:#efef5b;
+	border:none;
+	border-radius:20px;
+}
+.checkbox{
+	margin-top:20px;
+}
+#message {
+  display:none;
+  color: #000;
+  position: relative;
+}
+
+#message p {
+  font-size: 12px;
+}
+}
+@media (min-width: 300px) and (max-width: 450px){
+.register-cont {
+    width:100%;
+}
+.register-cont .register{
+	margin-left:10%;
+}
+.register-cont .register p{
+	Margin-left:5%;
+	font-size:12px;
+}
+.login-path a{
+	Margin-left:10%;
+	font-size:12px;
+}
+.btn-warning{
+	padding:10px 30px;
+	background:#efef5b;
+	border:none;
+	border-radius:20px;
+}
+.checkbox{
+margin-left:1%;
+}
+#message {
+  display:none;
+  color: #000;
+  position: relative;
+}
+
+#message p {
+  font-size: 10px;
+}
+}
