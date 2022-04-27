@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { Text, StyleSheet } from "react-native";
 
-export default function App() {
+const TextInANest = () => {
+  const [titleText, setTitleText] = useState("Bird's Nest");
+  const bodyText = "This is not really a bird nest.";
+
+  const onPressTitle = () => {
+    setTitleText("Bird's Nest [pressed]");
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Text style={styles.baseText}>
+      <Text style={styles.titleText} onPress={onPressTitle}>
+        {titleText}
+        {"\n"}
+        {"\n"}
+      </Text>
+      <Text numberOfLines={5}>{bodyText}</Text>
+    </Text>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  baseText: {
+    marginTop:80,
+    fontFamily: "Times New Roman"
   },
+  titleText: {
+    marginTop:50,
+    fontSize: 20,
+    fontWeight: "bold"
+  }
 });
+
+export default TextInANest;
