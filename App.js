@@ -1,20 +1,52 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { View, StyleSheet, ToastAndroid, Button, StatusBar } from "react-native";
 
-export default function App() {
+const App = () => {
+  const showToast = () => {
+    ToastAndroid.show("A pikachu appeared nearby !", ToastAndroid.SHORT);
+  };
+
+  const showToastWithGravity = () => {
+    ToastAndroid.showWithGravity(
+      "All Your Base Are Belong To Us",
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER
+    );
+  };
+
+  const showToastWithGravityAndOffset = () => {
+    ToastAndroid.showWithGravityAndOffset(
+      "A wild toast appeared!",
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM,
+      25,
+      50
+    );
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Button title="Toggle Toast" onPress={() => showToast()} />
+      <Button
+        title="Toggle Toast With Gravity"
+        onPress={() => showToastWithGravity()}
+      />
+      <Button
+        title="Toggle Toast With Gravity & Offset"
+        onPress={() => showToastWithGravityAndOffset()}
+      />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: "center",
+    paddingTop: StatusBar.currentHeight,
+    backgroundColor: "#888888",
+    padding: 8
+  }
 });
+
+export default App;
