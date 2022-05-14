@@ -1,11 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 
-export default function App() {
+const TouchableHighlightExample = () => {
+  const [count, setCount] = useState(0);
+  const onPress = () => setCount(count + 1);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <TouchableHighlight onPress={onPress}>
+        <View style={styles.button}>
+          <Text>Touch Here</Text>
+        </View>
+      </TouchableHighlight>
+      <View style={styles.countContainer}>
+        <Text style={styles.countText}>
+          {count || null}
+        </Text>
+      </View>
     </View>
   );
 }
@@ -13,8 +24,21 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    paddingHorizontal: 10
   },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#DDDDDD",
+    padding: 10
+  },
+  countContainer: {
+    alignItems: "center",
+    padding: 10
+  },
+  countText: {
+    color: "#FF00FF"
+  }
 });
+
+export default TouchableHighlightExample;
