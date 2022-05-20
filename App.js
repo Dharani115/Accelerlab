@@ -1,20 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { LayoutAnimation, Platform, StyleSheet, Text, TouchableOpacity, UIManager, View } from "react-native";
 
-export default function App() {
+if (
+  Platform.OS === "android" &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+const App = () => {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={style.container}>
+      <TouchableOpacity
+        onPress={() => {
+          LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+          setExpanded(!expanded);
+        }}
+      >
+        <Text>Press me to {expanded ? "collapse" : "expand"}!</Text>
+      </TouchableOpacity>
+      {expanded && (
+        <View style={style.tile}>
+          <Text>I disappear sometimes!</Text>
+        </View>
+      )}
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
+  tile: {
+    backgroundColor: "lightgrey",
+    borderWidth: 0.5,
+    borderColor: "#d6d7da"
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: "center",
+    alignItems: "center",
+    overflow: "hidden"
+  }
 });
+
+export default App;
