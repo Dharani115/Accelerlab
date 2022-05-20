@@ -1,20 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {
+  Platform,
+  PlatformColor,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const App = () => (
+  <View style={styles.container}>
+    <Text style={styles.label}>
+      I am a special label color!
+    </Text>
+  </View>
+);
 
 const styles = StyleSheet.create({
+  label: {
+    padding: 16,
+    ...Platform.select({
+      ios: {
+        color: PlatformColor('label'),
+        backgroundColor:
+          PlatformColor('systemTealColor'),
+      },
+      android: {
+        color: PlatformColor('?android:attr/textColor'),
+        backgroundColor:
+          PlatformColor('@android:color/holo_blue_bright'),
+      },
+      default: { color: 'black' }
+    })
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  }
 });
+
+export default App;
