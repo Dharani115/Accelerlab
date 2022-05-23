@@ -1,11 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, Text, Dimensions } from "react-native";
 
-export default function App() {
+const window = Dimensions.get("window");
+const screen = Dimensions.get("screen");
+
+const App = () => {
+  const [dimensions, setDimensions] = useState({ window, screen });
+
+  useEffect(() => {
+    const subscription = Dimensions.addEventListener(
+      "change",
+      ({ window, screen }) => {
+        setDimensions({ window, screen });
+      }
+    );
+    return () => subscription?.remove();
+  });
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.header}>Window Dimensions</Text>
+      {Object.entries(dimensions.window).map(([key, value]) => (
+        <Text>{key} - {value}</Text>
+      ))}
+      <Text style={styles.header}>Screen Dimensions</Text>
+      {Object.entries(dimensions.screen).map(([key, value]) => (
+        <Text>{key} - {value}</Text>
+      ))}
     </View>
   );
 }
@@ -13,8 +34,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: "center",
+    alignItems: "center"
   },
+  header: {
+    fontSize: 16,
+    marginVertical: 10
+  }
 });
+
+export default App;
